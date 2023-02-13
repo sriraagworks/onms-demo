@@ -4,3 +4,5 @@ snmptrap -v 2c -c public sriraag-telemetry-onms:10162 "" .1.3.6.1.4.1.99999.2.3 
 #Send Events via REST
 curl -v -u admin -H 'Content-Type: application/json' -d '{"nodeid": 39, "uei": "uei.sriraag.learning/trap/alert/unhappy"}' http://sriraag-onms:8980/opennms/rest/events
 
+#/opt/opennms/bin/send-event.pl example
+ /opt/opennms/bin/send-event.pl  -n 3 uei.opennms.org/demo/event/broken -p 'param1 value1' -p 'param2 value2'
