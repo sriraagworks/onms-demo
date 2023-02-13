@@ -6,3 +6,7 @@ curl -v -u admin -H 'Content-Type: application/json' -d '{"nodeid": 39, "uei": "
 
 #/opt/opennms/bin/send-event.pl example
  /opt/opennms/bin/send-event.pl  -n 3 uei.opennms.org/demo/event/broken -p 'param1 value1' -p 'param2 value2'
+
+ # Run From Karaf 
+ # Will show even definitions for the given UEI
+ show-event-config -u uei.opennms.org/demo/event/broken
