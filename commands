@@ -2,5 +2,5 @@
 snmptrap -v 2c -c public sriraag-telemetry-onms:10162 "" .1.3.6.1.4.1.99999.2.3 1.3.6.4.1.99999.2.3.1.1 s 'sad'
 
 #Send Events via REST
-curl -v -u admin -H 'Content-Type: application/json' -d '{"nodeid": 39, "uei": "uei.sriraag.learning/trap/alert/unhappy"}' http://sriraag-telemetry-onms.southindia.cloudapp.azure.com:8980/opennms/rest/events
+curl -v -u admin -H 'Content-Type: application/json' -d '{"nodeid": 39, "uei": "uei.sriraag.learning/trap/alert/unhappy"}' http://sriraag-onms:8980/opennms/rest/events
 
