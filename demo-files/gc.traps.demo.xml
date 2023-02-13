@@ -1,0 +1,71 @@
+
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+<!-- Traps -->
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.99999.2</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>3</mevalue>
+         </maskelement>
+         <varbind>
+            <vbnumber>1</vbnumber>
+            <vbvalue>~unhappy|sad</vbvalue>
+         </varbind>
+      </mask>
+      <uei>uei.opennms.org/demo/trap/alert/unhappy</uei>
+      <event-label>Alert Unhappy Custom Event</event-label>
+      <descr>Unhappy Trap Received :(
+         &lt;p>   Source => %source%             &lt;/p>
+         &lt;p>   NODE-LABEL=>%nodelabel%        &lt;/p>
+         &lt;p>   Location => %nodelocation%     &lt;/p>
+         &lt;p>   SNMP-Enterprise OID => %id%    &lt;/p>
+         &lt;p>   Trap OID => %trapoid%          &lt;/p>
+         &lt;p>   Parameter 1 => %parm[#1]%      &lt;/p>
+</descr>
+      <logmsg>Unhappy Trap Received => %parm[#1]%</logmsg>
+      <severity>Major</severity>
+      <alarm-data reduction-key="%uei%:%nodeid%:%interface%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.99999.2</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>3</mevalue>
+         </maskelement>
+         <varbind>
+            <vbnumber>1</vbnumber>
+            <vbvalue>~happy|yay</vbvalue>
+         </varbind>
+      </mask>
+      <uei>uei.opennms.org/demo/trap/alert/happy</uei>
+      <event-label>Yay! Happy Custom Event</event-label>
+      <descr>Yay! Happy Trap Received
+         &lt;p>   Source => %source%             &lt;/p>
+         &lt;p>   NODE-LABEL=>%nodelabel%        &lt;/p>
+         &lt;p>   Location => %nodelocation%     &lt;/p>
+         &lt;p>   SNMP-Enterprise OID => %id%    &lt;/p>
+         &lt;p>   Trap OID => %trapoid%          &lt;/p>
+         &lt;p>   Parameter 1 => %parm[#1]%      &lt;/p>
+</descr>
+      <logmsg>Yay! Happy Trap Received => %parm[#1]%</logmsg>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%nodeid%:%interface%" alarm-type="2" clear-key="uei.opennms.org/demo/trap/alert/unhappy:%nodeid%:%interface%" auto-clean="false"/>
+   </event>
+</events>
+

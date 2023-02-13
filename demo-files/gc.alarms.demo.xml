@@ -1,0 +1,28 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <uei>uei.opennms.org/demo/event/broken</uei>
+      <event-label>Broken Event</event-label>
+      <descr>This is a broken Event %parm[all]%</descr>
+      <logmsg dest="logndisplay">Ooops Something seems to be broken..
+         &lt;p>   Node-id     := %nodeid%          &lt;/p>
+         &lt;p>   Node-Label  := %nodelabel%       &lt;/p>
+         &lt;p>   Source      := %source%          &lt;/p>
+         &lt;p&gt;  Extra Parameters => %parm[all]%  &lt;/p&gt;
+</logmsg>
+      <severity>Major</severity>
+      <alarm-data reduction-key="%uei%:%nodeid%:%interface%" alarm-type="1" auto-clean="true"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/demo/event/fixed</uei>
+      <event-label>Fixed Event</event-label>
+      <descr>This is a fixed event %parm[all]%</descr>
+      <logmsg dest="logndisplay">Things are fixed now!!! YAY!!
+         &lt;p>   Node-id     := %nodeid%          &lt;/p>
+         &lt;p>   Node-Label  := %nodelabel%       &lt;/p>
+         &lt;p>   Source      := %source%          &lt;/p>
+         &lt;p&gt;  Extra Parameters => %parm[all]%  &lt;/p&gt;
+</logmsg>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%nodeid%:%interface%" alarm-type="2" clear-key="uei.opennms.org/demo/event/broken:%nodeid%:%interface%" auto-clean="false"/>
+   </event>
+</events>
