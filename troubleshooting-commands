@@ -15,6 +15,10 @@ pg_dump -U opennms -Fc -f "/PATH TO SAVE BACKED UP DATA/opennms.pgsql.gz" opennm
 # Validate Configs - Post Every Change
 /opt/opennms/bin/config-tester -a
 
+# Fixing Karaf [If any issues]
+/opt/opennms/bin/fix-karaf-setup.sh
+
+
 # Other Commands
 #TTOP COMMAND [Run from Karaf]
 ttop --stats=tid,name,state,waited_time,waited_count,blocked_time,blocked_count,user_time,cpu_time,user_time_perc,cpu_time_perc,lock_owner_id,lock_owner_name --order=cpu_time --millis=300
