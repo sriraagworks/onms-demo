@@ -1,0 +1,35 @@
+# Collect
+date;collect -l gc-south-india -n 4 org.opennms.netmgt.collectd.SnmpCollector 10.2.0.9;date
+collect -n 3 org.opennms.netmgt.collectd.SnmpCollector 10.2.0.6
+
+
+# Poll
+poll -n 3 -c org.opennms.netmgt.poller.monitors.SnmpMonitor 10.2.0.6
+poll -n 4 -l gc-south-india -c org.opennms.netmgt.poller.monitors.SnmpMonitor 10.2.0.9
+poll -n 3 -P example1 -S SNMP -c org.opennms.netmgt.poller.monitors.SnmpMonitor 10.2.0.6
+poll -n 4 -P example1 -S SNMP -l gc-south-india -c org.opennms.netmgt.poller.monitors.SnmpMonitor 10.2.0.9
+
+# Database Backup 
+pg_dump -U opennms -Fc -f "/PATH TO SAVE BACKED UP DATA/opennms.pgsql.gz" opennms
+
+# Validate Configs - Post Every Change
+/opt/opennms/bin/config-tester -a
+
+# Other Commands
+#TTOP COMMAND [Run from Karaf]
+ttop --stats=tid,name,state,waited_time,waited_count,blocked_time,blocked_count,user_time,cpu_time,user_time_perc,cpu_time_perc,lock_owner_id,lock_owner_name --order=cpu_time --millis=300
+
+## System Related Commands
+mpstat -P ALL 1 2
+pidstat 1 5
+
+
+## Thread Dumps
+Note: OpenNMS Needs to be running for this 
+1) Take a series of thread dumps separated a couple of minutes between each other (5 would be the right amount).
+for i in $(seq 1 5); do echo "Taking dump #$i"; sudo /usr/lib/jvm/java-11/bin/jstack $(cat /var/run/opennms/opennms.pid) > /tmp/thread-dump-$(hostname)-$i.txt; sleep 2m; done
+
+## Memory Histograms
+2) Take a series of memory histograms separated a couple of minutes between each other (5 would be the right amount).
+
+for i in $(seq 1 5); do echo "Taking dump #$i"; sudo /usr/lib/jvm/java-11/bin/jmap -histo:live  $(cat /var/run/opennms/opennms.pid) > /tmp/memory-histogram-$(hostname)-$i.txt; sleep 2m; done
